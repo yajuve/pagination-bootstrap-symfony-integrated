@@ -1,0 +1,48 @@
+<div class="text-center">
+    <nav>
+        <ul class="pagination pagination-sm">
+
+            {% if pagination.page == 1 %}
+                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+            {% else %}
+                <li>
+                    <a href="{{ path(app.request.get('_route'), app.request.query.all|merge({'page':pagination.page-1})) }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+
+
+            {% for i in 1..pagination.pages %}
+                {% if i == pagination.page %}
+                    <li class="active"><a href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+                {% else %}
+                    {% if (i-pagination.page)|abs < 3%}
+                        <li>
+
+                            <a href="{{ path(app.request.get('_route') ,app.request.query.all|merge({'page': i})) }}">
+                                {{ i }}
+                            </a>
+                        </li>
+                    {% elseif (i-pagination.page)|abs == 3%}
+                        <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">...</span></a></li>
+                    {% endif %}
+
+                {% endif %}
+
+            {% endfor %}
+
+
+            {% if pagination.page == pagination.pages %}
+                <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+            {% else %}
+                <li>
+                    <a href="{{ path(app.request.get('_route') , app.request.query.all|merge({'page':pagination.page+1})) }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
