@@ -16,8 +16,8 @@ we use the tag *include* of *twig*:
  
 with array *'pagination_array'* that contains:
 
-1. pagination_array**.page**: the number of current page (you can get it from arguments of route).
-2. pagination_array**.pages**: the number of pages.
+* pagination_array**.page**: the number of current page (you can get it from arguments of route).
+* pagination_array**.pages**: the number of pages.
 
 **NB:** You can calculate the number of pages using php function:
 
